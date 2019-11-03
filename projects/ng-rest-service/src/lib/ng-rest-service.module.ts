@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
-import { NgRestServiceComponent } from './ng-rest-service.component';
-
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [NgRestServiceComponent],
+  declarations: [],
   imports: [
+    HttpClientModule
   ],
-  exports: [NgRestServiceComponent]
+  exports: []
 })
 export class NgRestServiceModule { }
