@@ -1,5 +1,4 @@
 import { Observable } from 'rxjs';
-import { Filter } from '../filters/filter';
 import { QueryFilter } from '../filters/queryFilter';
 import { IModel } from '../models/imodel';
 
