@@ -4,20 +4,25 @@ import { Observable } from 'rxjs';
 import { Filter } from '../filters/filter';
 import { QueryFilter } from '../filters/queryFilter';
 import { IModel } from '../models/imodel';
+import { parseObservableObjects } from '../decorators/parse-observable-object';
 
 export class RestService<T extends IModel> implements IRestService<T> {
+
+    model: T;
 
     endpoint: string;
 
     constructor(private httpClient: HttpClient) { }
 
-    get(id: number): Observable<T> {
-        const url = this.endpoint + String(id);
+    @parseObservableObjects
+    get(id: string): Observable<T> {
+        const url = this.endpoint + id;
         return this.httpClient.get<T>(url);
     }
 
-    list(...filters: Filter[]): Observable<T[]> {
-        const url = this.endpoint + QueryFilter.buildQuery(...filters);
+    @parseObservableObjects
+    list(queryFilter: QueryFilter): Observable<T[]> {
+        const url = this.endpoint + queryFilter.getQuery();
         return this.httpClient.get<T[]>(url);
     }
 

@@ -9,17 +9,15 @@ class FakeModel implements IModel {
 
 class FakeService<T> {
     hola = 'hey';
+    model = FakeModel;
 
-    @parseObservableObjects({
-        model: FakeModel
-    })
+
+    @parseObservableObjects
     fakeOneObjectParse(obj: T): Observable<T> {
         return cold('-a-|', {a: obj});
     }
 
-    @parseObservableObjects({
-        model: FakeModel
-    })
+    @parseObservableObjects
     fakeMultipleObjectParse(obj): Observable<T> {
         return cold('-a-b-|', { a: obj.a, b: obj.b });
     }
